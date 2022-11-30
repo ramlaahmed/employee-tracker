@@ -1,6 +1,4 @@
-import mysql from 'mysql2';
-import inquirer from 'inquirer';
-import consTable from 'console.table';
+const mysql = require("mysql2");
+const inquirer = require("inquirer");
+require ("console.table");
 
-
-i
