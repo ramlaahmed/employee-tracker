@@ -4,7 +4,7 @@ const { prompt } = require("inquirer");
 const db = require("./db/connection.js");
 require ("console.table");
 
-function letsStart() {
+function start() {
     prompt([
       {
         type: "list",
@@ -16,16 +16,16 @@ function letsStart() {
             value: "viewAllDepartments",
           },
           {
+            name: "Add A Department",
+            value: "addDepartment",
+          },
+          {
             name: "View All Roles",
             value: "viewAllRoles",
           },
           {
             name: "View All Employees",
             value: "viewAllEmployees",
-          },
-          {
-            name: "Add A Department",
-            value: "addDepartment",
           },
           {
             name: "Add A Role",
@@ -43,7 +43,6 @@ function letsStart() {
       },
     ]).then((res) => {
       let choice = res.choice;
-      // Call the function depending on what the user chooses.
       switch (choice) {
         case "viewAllDepartments":
           viewAllDepartments();
@@ -70,31 +69,31 @@ function letsStart() {
     });
   }
   
-  letsStart();
+start();
   
-  function viewAllDepartments() {
-    const sql = "SELECT * FROM department"; (err, res) => {
+function viewAllDepartments() {
+     db.query ( "SELECT * FROM department", (err, res) => {
       if (err) throw err;
       console.table(res);
-    };
-    letsStart();
+    });
+    start();
   }
   
-  function viewAllRoles() {
+function viewAllRoles() {
     db.query("SELECT * FROM role", (err, res) => {
       console.table(res);
     });
-    letsStart();
+    start();
   }
   
-  function viewAllEmployees() {
+function viewAllEmployees() {
     db.query("SELECT * FROM employee", (err, res) => {
       console.table(res);
     });
-    letsStart();
+    start();
   }
   
-  function addDepartment() {
+function addDepartment() {
     prompt([
       {
         type: "input",
@@ -111,11 +110,11 @@ function letsStart() {
           console.table(res);
         }
       );
-      letsStart();
+      start();
     });
-  }
+}
   
-  function addNewRole() {
+function addNewRole() {
     let departmentID = [];
     let departmentName = [];
     db.query("SELECT * FROM department", (err, res) => {
