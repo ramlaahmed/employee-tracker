@@ -2,8 +2,7 @@
 
 ## Overview
 
-In this project, i created a back end employee application tracker for managing a company's employees
-using SQL commands.
+In this project, i created a back end command-line application for managing a company's employees.
 
 ## Technologies
 
