@@ -2,7 +2,7 @@ const mysql = require("mysql2");
 const inquirer = require("inquirer");
 const { prompt } = require("inquirer");
 const db = require("./db/connection.js");
-require ("console.table");
+const { printTable } = require('console-table-printer');
 
 function start() {
     prompt([
@@ -16,16 +16,16 @@ function start() {
             value: "viewAllDepartments",
           },
           {
-            name: "Add A Department",
-            value: "addDepartment",
-          },
-          {
             name: "View All Roles",
             value: "viewAllRoles",
           },
           {
             name: "View All Employees",
             value: "viewAllEmployees",
+          },
+          {
+            name: "Add A Department",
+            value: "addDepartment",
           },
           {
             name: "Add A Role",
@@ -39,6 +39,9 @@ function start() {
             name: "Update An Employee Role",
             value: "updateEmployeeRole",
           },
+          {name: "Quit",
+            value: "Quit",
+          } 
         ],
       },
     ]).then((res) => {
@@ -65,6 +68,8 @@ function start() {
         case "updateEmployeeRole":
           updateEmployeeRole();
           break;
+       case "Quit":
+            Quit();
       }
     });
   }
@@ -81,6 +86,8 @@ function viewAllDepartments() {
   
 function viewAllRoles() {
     db.query("SELECT * FROM role", (err, res) => {
+      if (err) throw err;
+
       console.table(res);
     });
     start();
@@ -88,6 +95,8 @@ function viewAllRoles() {
   
 function viewAllEmployees() {
     db.query("SELECT * FROM employee", (err, res) => {
+      if (err) throw err;
+
       console.table(res);
     });
     start();
@@ -108,10 +117,12 @@ function addDepartment() {
         (err, res) => {
           if (err) throw err;
           console.table(res);
+          start();
         }
       );
-      start();
     });
+    
+
 }
   
 function addNewRole() {
@@ -163,6 +174,7 @@ function addNewRole() {
         (err, res) => {
           if (err) throw err;
           console.log("Role has been added");
+          start()
         }
       );
     });
@@ -214,6 +226,8 @@ function addNewRole() {
               if (err) throw err;
   
               console.log('Added a new employee!');
+          start()
+
             }
           );
         });
@@ -267,11 +281,17 @@ function addNewRole() {
               [res.role, res.employee],
               (err, res) => {
                 if (err) throw err;
+                start()
   
                 console.log('Employee role updated!');
               }
             );
           })
           });
+          
       });
+      function Quit() {
+        console.log("Thank you for using Emplyee Tracker!");
+        connection.Quit();
+      }
   }
