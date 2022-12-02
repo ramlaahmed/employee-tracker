@@ -2,7 +2,7 @@ const mysql = require("mysql2");
 const inquirer = require("inquirer");
 const { prompt } = require("inquirer");
 const db = require("./db/connection.js");
-const { printTable } = require('console-table-printer');
+//const { printTable } = require('console-table-printer');
 
 function start() {
     prompt([
@@ -73,7 +73,6 @@ function start() {
       }
     });
   }
-  
 start();
   
 function viewAllDepartments() {
@@ -234,7 +233,7 @@ function addNewRole() {
     });
   }
   
-  function updateEmployeeRole() {
+function updateEmployeeRole() {
     const roleData = [];
   
     db.query("SELECT * FROM role", (err, result) => {
@@ -290,8 +289,9 @@ function addNewRole() {
           });
           
       });
-      function Quit() {
-        console.log("Thank you for using Emplyee Tracker!");
-        connection.Quit();
       }
+      
+  function Quit() {
+        console.log("Thank you for using Employee Tracker!");
+        connection.Quit();
   }
