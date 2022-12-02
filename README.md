@@ -2,7 +2,7 @@
 
 ## Overview
 
-In this project, i created a back end command-line application for managing a company's employees.
+In this project, i created a back end command-line application for managing a company's employees database.
 
 ## Technologies
 
@@ -18,3 +18,5 @@ In this project, i created a back end command-line application for managing a co
 ## Links
 
 GitHUB URL - https://github.com/ramlaahmed/employee-tracker
+
+Walk through URL - https://drive.google.com/file/d/1mbDkKQvxU1dESwXWG9eHxyXU2JlVR1zV/view

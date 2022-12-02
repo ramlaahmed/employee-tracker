@@ -292,6 +292,6 @@ function updateEmployeeRole() {
       }
       
   function Quit() {
-        console.log("Thank you for using Employee Tracker!");
-        connection.Quit();
+        console.log("Thank you for using Employee-Tracker!");
+        process.exit();
   }
